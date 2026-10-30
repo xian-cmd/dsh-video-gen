@@ -60,13 +60,13 @@ AI 就会调工具、等结果（通常 1-15 分钟），然后告诉你文件�
 dsh plugin --profile <你的profile名> add <仓库根目录>/packages/video
 ```
 
-然后在 profile 的 `package.json` 里，往 `dsh.profile.bundles` 数组加上 `"video"`：
+然后在 profile 的 `package.json` 里，往 `dsh.profile.bundles` 数组加上 `"dsh-video"`：
 
 ```json
 {
   "dsh": {
     "profile": {
-      "bundles": ["video", "...其他插件"]
+      "bundles": ["dsh-video", "...其他插件"]
     }
   }
 }
@@ -75,26 +75,27 @@ dsh plugin --profile <你的profile名> add <仓库根目录>/packages/video
 ### 方式二：软链到 node_modules
 
 ```powershell
-# Windows：把 packages/video 链到 profile 的 node_modules
+# Windows：把 packages/video 链到 profile 的 node_modules（链接名必须是 dsh-video）
 New-Item -ItemType Junction `
-  -Path "$env:USERPROFILE\.dsh\profiles\<profile>\node_modules\video" `
+  -Path "$env:USERPROFILE\.dsh\profiles\<profile>\node_modules\dsh-video" `
   -Target "D:\path\to\dsh-video-gen\packages\video"
 ```
 
-> ⚠️ 目标必须是 **`packages/video`**，不是仓库根目录。
-> DSH 要的是含 `package.json` + `cordis.patch.yml` 的那个包目录。
+> ⚠️ 两件事都要对：
+> 1. 链接名必须是 **`dsh-video`**（和 `bundles` 里写的一致），不能叫 `video`
+> 2. 目标必须是 **`packages/video`**，不是仓库根目录 —— DSH 要的是含 `package.json` + `cordis.patch.yml` 的那个包目录
 
-同样需要往 `dsh.profile.bundles` 加 `"video"`。
+同样需要往 `dsh.profile.bundles` 加 `"dsh-video"`。
 
 ### 装完怎么确认
 
-重启 DSH → **设置 → 插件 → 视频生成**，能看到 5 个平台的列表就说明挂载成功。
+重启 DSH → **设置 → 插件 → dsh-video**，能看到 5 个平台的列表就说明挂载成功。
 
 ---
 
 ## 配置
 
-在 **设置 → 插件 → 视频生成** 页面：
+在 **设置 → 插件 → dsh-video** 页面：
 
 1. 顶部选**默认平台**（只有配了 Key 的平台能选）
 2. 点开任意平台那一行，填入 API Key → 点「保存」
@@ -197,11 +198,11 @@ dsh-video-gen/
 ├── LICENSE                 # MIT
 ├── .gitignore
 └── packages/
-    └── video/              # ← 真正的插件包目录（DSH 挂载的就是它）
+    └── video/              # ← 插件包目录（包名 dsh-video，DSH 挂载的就是它）
         ├── index.js        # 后端：平台定义、HTTP 调用、工具注册、设置页接口（621 行）
         ├── client.js       # 前端：设置页 React 组件（365 行）
         ├── cordis.patch.yml # DSH bundle 挂载声明
-        └── package.json    # 包名 video + dsh 插件元数据
+        └── package.json    # 包名 dsh-video + dsh 插件元数据
 ```
 
 > 安装 / 软链时指向的是 **`packages/video`**，不是仓库根目录。
