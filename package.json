@@ -1,5 +1,5 @@
 {
-  "name": "dsh-video-gen-repo",
+  "name": "dsh-video-repo",
   "version": "0.1.0",
   "private": true,
   "description": "DeepSeek Harness 视频生成插件仓库。代码包在 packages/ 下，说明文档与本目录同级。",
