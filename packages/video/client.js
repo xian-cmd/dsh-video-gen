@@ -1,7 +1,7 @@
 // video 设置页 —— 参照 DSH 生图设置的交互：
 //   顶部「默认 Provider」单选 → 下面每个平台一行，右侧显示 Key 状态、可展开填 Key
 window.__ModuleLoader__.load({
-  id: 'video',
+  id: 'dsh-video',
   factory(require) {
     const React = require('react');
     const { useState, useEffect, useCallback } = React;
@@ -352,11 +352,11 @@ window.__ModuleLoader__.load({
         //      settings.plugin.item  —— 「设置」里对应插件的一栏
         //    （profile 的 cordis.patch.yml 里 ui-settings 是 enabled:false，settings.section 那条路不生效）
         ctx.slots.inject('plugins.bundle.config', () => ctx.slots.register(
-          { name: 'plugins.bundle.config', key: 'video' },
+          { name: 'plugins.bundle.config', key: 'dsh-video' },
           Panel,
         ));
         ctx.slots.inject('settings.plugin.item', () => ctx.slots.register(
-          { name: 'settings.plugin.item', key: 'video' },
+          { name: 'settings.plugin.item', key: 'dsh-video' },
           Panel,
         ));
       },
