@@ -1,21 +1,21 @@
 # ============================================================================
-# video —— DSH bundle patch
+# dsh-video —— DSH bundle patch
 # ============================================================================
 # 这是插件**自带**的挂载声明：装进 profile 的 dsh.profile.bundles 后，
 # 下面这条 entry 会被插进配置树，插件随之加载。
 #
 # 装法：
 #   dsh plugin --profile <name> add <本插件目录或包名>
-#   然后在 profile 的 package.json → dsh.profile.bundles 里加上 "video"
+#   然后在 profile 的 package.json → dsh.profile.bundles 里加上 "dsh-video"
 #
-# ⚠️ entry 的 `id` 必须保持 `video`（与你 settings 里按 id 归档的配置对应）。
+# ⚠️ entry 的 `id` 必须保持 `dsh-video`（与你 settings 里按 id 归档的配置对应）。
 # ============================================================================
 
 - insert:
-    - id: video
-      name: video
+    - id: dsh-video
+      name: dsh-video
       config:
-        # 默认用哪个平台：wan | ark | kling
+        # 默认用哪个平台：wan | ark | kling | pixverse | vidu
         provider: wan
         # 生成结果保存目录（留空 = ~/.dsh/video-gen）
         workDir: 'D:\项目\大肥鱼用\视频'
