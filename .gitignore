@@ -1,0 +1,24 @@
+# 依赖与构建产物
+node_modules/
+dist/
+*.log
+
+# 环境变量与密钥（绝不提交）
+.env
+.env.*
+*.key
+*.pem
+
+# 本地产出的视频
+*.mp4
+*.webm
+video-*/
+
+# 编辑器
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 插件本地配置（可能含自定义接口地址）
+config.json
