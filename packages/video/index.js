@@ -9,7 +9,7 @@ import { writeFileSync, mkdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { homedir } from 'node:os'
 
-export const name = 'video'
+export const name = 'dsh-video'
 
 // defineTool 由宿主提供（peer 依赖，插件目录里不一定解析得到）。拿不到就用原样对象。
 let defineTool = (spec) => spec
