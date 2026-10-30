@@ -57,7 +57,7 @@ AI 就会调工具、等结果（通常 1-15 分钟），然后告诉你文件�
 ### 方式一：本地目录安装
 
 ```bash
-dsh plugin --profile <你的profile名> add <本插件目录的绝对路径>
+dsh plugin --profile <你的profile名> add <仓库根目录>/packages/video
 ```
 
 然后在 profile 的 `package.json` 里，往 `dsh.profile.bundles` 数组加上 `"video"`：
@@ -75,11 +75,14 @@ dsh plugin --profile <你的profile名> add <本插件目录的绝对路径>
 ### 方式二：软链到 node_modules
 
 ```powershell
-# Windows：把本插件目录链到 profile 的 node_modules
+# Windows：把 packages/video 链到 profile 的 node_modules
 New-Item -ItemType Junction `
   -Path "$env:USERPROFILE\.dsh\profiles\<profile>\node_modules\video" `
-  -Target "D:\path\to\dsh-video-gen"
+  -Target "D:\path\to\dsh-video-gen\packages\video"
 ```
+
+> ⚠️ 目标必须是 **`packages/video`**，不是仓库根目录。
+> DSH 要的是含 `package.json` + `cordis.patch.yml` 的那个包目录。
 
 同样需要往 `dsh.profile.bundles` 加 `"video"`。
 
@@ -186,14 +189,24 @@ New-Item -ItemType Junction `
 
 ## 项目结构
 
+**代码包和说明文档同级并列** —— 文档在仓库根目录，代码全部收在 `packages/` 下。
+
 ```
 dsh-video-gen/
-├── index.js            # 后端：平台定义、HTTP 调用、工具注册、设置页接口（621 行）
-├── client.js           # 前端：设置页 React 组件（365 行）
-├── cordis.patch.yml    # DSH bundle 挂载声明
-├── package.json        # 包信息 + dsh 插件元数据
-└── README.md
+├── README.md               # 本文档：这是什么、怎么装、怎么用
+├── LICENSE                 # MIT
+├── .gitignore
+└── packages/
+    └── video/              # ← 真正的插件包目录（DSH 挂载的就是它）
+        ├── index.js        # 后端：平台定义、HTTP 调用、工具注册、设置页接口（621 行）
+        ├── client.js       # 前端：设置页 React 组件（365 行）
+        ├── cordis.patch.yml # DSH bundle 挂载声明
+        └── package.json    # 包名 video + dsh 插件元数据
 ```
+
+> 安装 / 软链时指向的是 **`packages/video`**，不是仓库根目录。
+
+以后再加插件包，直接往 `packages/` 下开新目录即可，各包互不干扰。
 
 ### 两个关键设计点
 
