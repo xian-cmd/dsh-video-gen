@@ -1,7 +1,7 @@
 {
-  "name": "video",
+  "name": "dsh-video",
   "version": "0.1.0",
-  "description": "让 DSH 里的 AI 生成视频：支持通义万相 Wan（阿里云 DashScope）与火山方舟（即梦 / Seedance）。在「设置 → 插件 → video」里填 Key 即可用。",
+  "description": "让 DSH 里的 AI 生成视频：支持通义万相 Wan（阿里云 DashScope）与火山方舟（即梦 / Seedance）。在「设置 → 插件 → dsh-video」里填 Key 即可用。",
   "keywords": [
     "dsh",
     "dsh-plugin",
