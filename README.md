@@ -1,4 +1,4 @@
-# dsh-video-gen
+# dsh-video
 
 > 给 [DeepSeek Harness](https://github.com/deepseek-ai) (DSH) 用的**视频生成插件**。
 > 在设置页填一次 API Key，之后直接对 AI 说「生成一段视频」，成品自动存到本地。
